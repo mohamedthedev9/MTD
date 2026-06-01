@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
     /* --- 1. SECRETIVE TEXT REVEAL ANIMATION --- */
     const textContainer = document.getElementById('secret-text');
-    const rawText = "MTD is a secretive organization founded in 2022 by MohamedTheDev (Mohamed Reda). It operates across most sectors with complete confidentiality, employing 3,499 people and managers. The brand owner is Mohamed Reda, who spearheaded a major transformation in 2025. We have many secret partners who remain undisclosed, and our work with them is conducted with utmost secrecy, setting us apart from the competition.";
+    const rawText = "MTD is a secretive organization founded in 2022 by MohamedTheDev (Mohamed Reda). It operates across most sectors with complete confidentiality, employing 34 people and managers. The brand owner is Mohamed Reda, who spearheaded a major transformation in 2025. We have many secret partners who remain undisclosed, and our work with them is conducted with utmost secrecy, setting us apart from the competition. (THIS WEBSITE STILL UNDER CONSTRUCTIONS)";
     
     // Split text into words for a smooth cinematic reveal
     const words = rawText.split(' ');
