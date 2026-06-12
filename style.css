@@ -399,30 +399,31 @@ header {
     .rotating-logo { max-width: 200px; margin-top: 2rem; }
     .header-action-btn { display: none; /* Hides on very small screens to save space */ }
 }
-/* === HACKER TEXT (INSIDE PORTAL) === */
+/* === HACKER TEXT (INSIDE PORTAL - SERIF BOLD) === */
 #top-status {
     position: absolute;
-    top: 8%; /* Positions it near the top of the screen */
+    top: 5%; /* Closer to the top edge */
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Courier New', Courier, monospace; 
-    font-size: 2.2rem; /* MUCH BIGGER */
-    font-weight: bold;
+    
+    /* Using a bold Serif font for a high-end, classic feel */
+    font-family: 'Cinzel', serif; 
+    font-size: 3.5rem; /* Increased size */
+    font-weight: 700;
+    
     color: #00ff00; /* Hacker Green */
-    text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
-    letter-spacing: 0.15em;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     text-align: center;
-    width: 90%; /* Prevents text from hitting the edges */
+    width: 100%;
     pointer-events: none; 
 }
 
-/* Mobile Adjustments for Hacker Text */
+/* Mobile Adjustments */
 @media (max-width: 768px) {
     #top-status {
-        top: 10%; 
-        font-size: 1.1rem; /* Scaled down slightly so it doesn't break phone screens */
-        white-space: normal;
-        line-height: 1.4;
+        top: 3%; 
+        font-size: 1.8rem; /* Scaled down for mobile */
     }
 }
