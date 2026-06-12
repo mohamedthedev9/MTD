@@ -93,3 +93,37 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = 'auto'; // Restores scrolling
     });
 });
+/* --- 5. HACKER TEXT DECODING ANIMATION --- */
+    const statusText = document.getElementById('top-status');
+    const finalMessage = "SYSTEM SECURED // ENCRYPTED CONNECTION";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+
+    // Wait 1 second for the CSS drop-down animation to start, then run the glitch
+    setTimeout(() => {
+        let iterations = 0;
+
+        const decodeInterval = setInterval(() => {
+            statusText.innerText = finalMessage.split("")
+                .map((char, index) => {
+                    // Ignore spaces to keep the formatting clean
+                    if (char === " ") return " ";
+                    
+                    // Lock in the real character once the loop catches up to its position
+                    if (index < iterations) {
+                        return finalMessage[index];
+                    }
+                    
+                    // Otherwise, show a random hacker character
+                    return characters[Math.floor(Math.random() * characters.length)];
+                })
+                .join("");
+
+            // Stop the animation once the whole sentence is revealed
+            if (iterations >= finalMessage.length) {
+                clearInterval(decodeInterval);
+            }
+
+            // Adjust this number to change the decoding speed (higher = faster)
+            iterations += 1 / 3; 
+        }, 30); // Runs every 30 milliseconds
+    }, 1000);
