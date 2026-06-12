@@ -76,54 +76,50 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1500);
     });
 
-/* --- 4. PYTHON PORTAL LOGIC --- */
+/* --- 4. PYTHON PORTAL & HACKER TEXT LOGIC --- */
     const pythonBtn = document.getElementById('open-python-btn');
     const pythonPortal = document.getElementById('python-portal');
     const closePortalBtn = document.getElementById('close-portal');
+    const statusText = document.getElementById('top-status');
+    
+    const finalMessage = "SYSTEM SECURED // ENCRYPTED CONNECTION";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+    let decodeInterval; // Stores the animation so we can stop it if needed
 
-    // Open Portal
+    // Open Portal & Trigger Hacker Text
     pythonBtn.addEventListener('click', () => {
         pythonPortal.classList.add('is-open');
         document.body.style.overflow = 'hidden'; // Stops background from scrolling
+        
+        // Reset the text so it animates every time the portal is opened
+        statusText.innerText = "";
+        let iterations = 0;
+        clearInterval(decodeInterval); // Clears any old animations
+
+        // Wait 0.5s for the portal to fade in, then start the terminal glitch
+        setTimeout(() => {
+            decodeInterval = setInterval(() => {
+                statusText.innerText = finalMessage.split("")
+                    .map((char, index) => {
+                        if (char === " ") return " ";
+                        if (index < iterations) {
+                            return finalMessage[index];
+                        }
+                        return characters[Math.floor(Math.random() * characters.length)];
+                    })
+                    .join("");
+
+                if (iterations >= finalMessage.length) {
+                    clearInterval(decodeInterval);
+                }
+                iterations += 1 / 3; // Adjust speed here (higher = faster)
+            }, 30); 
+        }, 500);
     });
 
     // Close Portal
     closePortalBtn.addEventListener('click', () => {
         pythonPortal.classList.remove('is-open');
         document.body.style.overflow = 'auto'; // Restores scrolling
+        clearInterval(decodeInterval); // Stops the animation if closed early
     });
-});
-/* --- 5. HACKER TEXT DECODING ANIMATION --- */
-    const statusText = document.getElementById('top-status');
-    const finalMessage = "SYSTEM SECURED // ENCRYPTED CONNECTION";
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
-
-    // Wait 1 second for the CSS drop-down animation to start, then run the glitch
-    setTimeout(() => {
-        let iterations = 0;
-
-        const decodeInterval = setInterval(() => {
-            statusText.innerText = finalMessage.split("")
-                .map((char, index) => {
-                    // Ignore spaces to keep the formatting clean
-                    if (char === " ") return " ";
-                    
-                    // Lock in the real character once the loop catches up to its position
-                    if (index < iterations) {
-                        return finalMessage[index];
-                    }
-                    
-                    // Otherwise, show a random hacker character
-                    return characters[Math.floor(Math.random() * characters.length)];
-                })
-                .join("");
-
-            // Stop the animation once the whole sentence is revealed
-            if (iterations >= finalMessage.length) {
-                clearInterval(decodeInterval);
-            }
-
-            // Adjust this number to change the decoding speed (higher = faster)
-            iterations += 1 / 3; 
-        }, 30); // Runs every 30 milliseconds
-    }, 1000);
