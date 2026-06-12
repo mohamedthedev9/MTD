@@ -399,36 +399,30 @@ header {
     .rotating-logo { max-width: 200px; margin-top: 2rem; }
     .header-action-btn { display: none; /* Hides on very small screens to save space */ }
 }
-/* === TOP MIDDLE ANIMATED TEXT (HACKER THEME) === */
+/* === HACKER TEXT (INSIDE PORTAL) === */
 #top-status {
     position: absolute;
+    top: 8%; /* Positions it near the top of the screen */
     left: 50%;
-    transform: translateX(-50%) translateY(-20px);
-    /* Using a monospace font makes it look like a real terminal */
+    transform: translateX(-50%);
     font-family: 'Courier New', Courier, monospace; 
-    font-size: 0.85rem;
+    font-size: 2.2rem; /* MUCH BIGGER */
     font-weight: bold;
     color: #00ff00; /* Hacker Green */
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.6); /* Green Glow Effect */
-    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    opacity: 0;
+    text-align: center;
+    width: 90%; /* Prevents text from hitting the edges */
     pointer-events: none; 
-    white-space: nowrap;
-    animation: dropFadeIn 2s ease forwards 0.5s;
 }
 
-@keyframes dropFadeIn {
-    to {
-        opacity: 0.9; 
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-/* Mobile Adjustments */
+/* Mobile Adjustments for Hacker Text */
 @media (max-width: 768px) {
     #top-status {
-        top: 80px; 
-        font-size: 0.65rem;
+        top: 10%; 
+        font-size: 1.1rem; /* Scaled down slightly so it doesn't break phone screens */
+        white-space: normal;
+        line-height: 1.4;
     }
 }
