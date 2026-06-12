@@ -375,46 +375,29 @@ button:hover {
     display: block;
 }
 
-/* === HACKER TEXT (INSIDE PORTAL - SERIF BOLD) === */
+/* === HACKER TEXT (INSIDE PORTAL - ADJUSTED SIZE) === */
 #top-status {
     position: absolute;
-    top: 5%; 
+    top: 6%; 
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Cinzel', serif; 
-    font-size: 1.0rem; 
-    font-weight: 500;
+    font-size: 2.2rem; /* Shrunk down from 3.5rem */
+    font-weight: 700;
     color: #00ff00; 
-    text-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
-    letter-spacing: 0.1em;
+    text-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-align: center;
-    width: 100%;
+    width: 90%; /* Gives it some breathing room on the sides */
     pointer-events: none; 
 }
 
-/* === ANIMATIONS === */
-@keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slowSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* === RESPONSIVE DESIGN === */
+/* === RESPONSIVE DESIGN ADJUSTMENT === */
 @media (max-width: 768px) {
-    header { padding: 1.5rem 2rem; }
-    section { padding: 5rem 2rem; }
-    .secret-text-container { font-size: 1.4rem; }
-    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-    button { width: 100%; }
-    .partners-grid { gap: 3rem; }
-    .partner-logo { width: 70px; }
-    
-    /* Portal Mobile Adjustments */
-    .portal-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; margin-top: 8rem; }
-    .rotating-logo { max-width: 200px; }
-    #top-status { top: 3%; font-size: 1.8rem; }
+    /* Look for this line inside your existing media query and update it */
+    #top-status { 
+        top: 4%; 
+        font-size: 1.2rem; /* Clean and readable on phones */
+    }
 }
