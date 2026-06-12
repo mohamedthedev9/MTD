@@ -76,4 +76,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1500);
     });
 
+/* --- 4. PYTHON PORTAL LOGIC --- */
+    const pythonBtn = document.getElementById('open-python-btn');
+    const pythonPortal = document.getElementById('python-portal');
+    const closePortalBtn = document.getElementById('close-portal');
+
+    // Open Portal
+    pythonBtn.addEventListener('click', () => {
+        pythonPortal.classList.add('is-open');
+        document.body.style.overflow = 'hidden'; // Stops background from scrolling
+    });
+
+    // Close Portal
+    closePortalBtn.addEventListener('click', () => {
+        pythonPortal.classList.remove('is-open');
+        document.body.style.overflow = 'auto'; // Restores scrolling
+    });
 });
