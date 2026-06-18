@@ -49,3 +49,55 @@ document.addEventListener('DOMContentLoaded', () => {
         statusText.innerText = ""; 
     });
 });
+/* --- 4. SECURE CONTACT FORM PROCESSING --- */
+    const contactForm = document.getElementById('secure-contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents the browser from reloading the page
+            
+            submitBtn.innerText = "TRANSMITTING...";
+            submitBtn.disabled = true;
+            formStatus.style.color = "var(--text-muted)";
+            formStatus.innerText = "Initiating handshake with secure node...";
+
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (response.status == 200) {
+                    formStatus.style.color = "#00ff00"; // Hacker Green Success text
+                    formStatus.innerText = "TRANSMISSION SUCCESSFUL // DATA SENT.";
+                    contactForm.reset(); // Clears out the form inputs
+                } else {
+                    console.log(response);
+                    formStatus.style.color = "#ff3333";
+                    formStatus.innerText = res.message || "TRANSMISSION FAILED // NODE ERROR.";
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                formStatus.style.color = "#ff3333";
+                formStatus.innerText = "NETWORK ERROR // OVERRIDE FAILED.";
+            })
+            .then(() => {
+                submitBtn.innerText = "Transmit Transmission";
+                submitBtn.disabled = false;
+                setTimeout(() => {
+                    formStatus.innerText = "";
+                }, 5000); // Hides status message after 5 seconds
+            });
+        });
+    }
