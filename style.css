@@ -60,7 +60,6 @@ header {
     padding: 0.6rem 1.5rem;
     font-family: var(--font-head);
     font-size: 0.8rem;
-    margin-top: 0;
     cursor: pointer;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -103,9 +102,6 @@ h1, h2 {
     font-size: 1.5rem;
     color: var(--text-muted);
     margin-bottom: 3rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 1.5s ease forwards 0.5s;
 }
 
 .secret-text-container {
@@ -182,55 +178,6 @@ input::placeholder, textarea::placeholder {
     font-style: italic;
 }
 
-button {
-    margin-top: 1rem;
-    align-self: flex-start;
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 1rem 3rem;
-    font-family: var(--font-head);
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    text-transform: uppercase;
-}
-
-button:hover {
-    background: var(--accent);
-    color: var(--bg-color);
-}
-
-.direct-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: center;
-}
-
-.contact-link {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    transition: color 0.3s ease;
-}
-
-.contact-link span {
-    font-family: var(--font-head);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-}
-
-.contact-link:hover {
-    color: var(--accent);
-}
-
 /* === OFFICIAL PARTNERS SECTION === */
 #partners {
     min-height: auto; 
@@ -265,23 +212,22 @@ button:hover {
     height: auto;
     object-fit: contain;
     opacity: 0.5; 
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
-    cursor: crosshair; 
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .partner-logo:hover {
-    transform: scale(1.4); 
+    transform: scale(1.2); 
     opacity: 1; 
 }
 
-/* === PYTHON SECURE PORTAL OVERLAY === */
+/* === SECURE PORTAL OVERLAY === */
 .portal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(5, 5, 5, 0.95);
+    background: rgba(5, 5, 5, 0.96);
     backdrop-filter: blur(10px);
     z-index: 999;
     display: flex;
@@ -305,14 +251,11 @@ button:hover {
     border: none;
     color: var(--text-main);
     font-size: 3rem;
-    margin-top: 0;
-    padding: 0;
     cursor: pointer;
 }
 
 .close-btn:hover {
     color: #ff3333;
-    background: transparent;
 }
 
 .portal-content {
@@ -322,10 +265,9 @@ button:hover {
     width: 90%;
     gap: 4rem;
     align-items: center;
-    margin-top: 5rem; /* Ensures layout elements don't overlap text layout */
+    margin-top: 5rem;
 }
 
-/* Left Box Styling */
 .auth-box {
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 3rem;
@@ -365,39 +307,49 @@ button:hover {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* Right Logo Animation */
 .rotating-logo {
     width: 100%;
-    max-width: 350px;
+    max-width: 320px;
     opacity: 0.15;
     animation: slowSpin 30s linear infinite;
     margin: 0 auto;
     display: block;
 }
 
-/* === HACKER TEXT (INSIDE PORTAL - ADJUSTED SIZE) === */
+/* === PERFECTLY SCALED SERIF HACKER TEXT === */
 #top-status {
     position: absolute;
-    top: 6%; 
+    top: 7%; 
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Cinzel', serif; 
-    font-size: 2.2rem; /* Shrunk down from 3.5rem */
+    font-size: 2.2rem; /* Shrunk down and clean */
     font-weight: 700;
     color: #00ff00; 
     text-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     text-align: center;
-    width: 90%; /* Gives it some breathing room on the sides */
+    width: 90%;
     pointer-events: none; 
 }
 
-/* === RESPONSIVE DESIGN ADJUSTMENT === */
+/* === ANIMATIONS === */
+@keyframes slowSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
-    /* Look for this line inside your existing media query and update it */
-    #top-status { 
-        top: 4%; 
-        font-size: 1.2rem; /* Clean and readable on phones */
-    }
+    header { padding: 1.5rem 2rem; }
+    section { padding: 5rem 2rem; }
+    .secret-text-container { font-size: 1.4rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .partners-grid { gap: 3rem; }
+    .partner-logo { width: 70px; }
+    
+    .portal-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; margin-top: 8rem; }
+    .rotating-logo { max-width: 180px; }
+    #top-status { top: 4%; font-size: 1.2rem; }
 }
