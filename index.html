@@ -62,18 +62,22 @@
         <section id="contact">
             <h2>Secure Connection</h2>
             <div class="contact-grid">
-                <form id="secure-contact-form" onsubmit="event.preventDefault();">
-                    <div class="input-group">
-                        <input type="text" placeholder="Identity / Name" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" placeholder="Secure Node / Email" required>
-                    </div>
-                    <div class="input-group">
-                        <textarea placeholder="Encrypted Message..." rows="5" required></textarea>
-                    </div>
-                    <button type="submit">Transmit Transmission</button>
-                </form>
+               <form id="secure-contact-form">
+    <input type="hidden" name="access_key" value="a292b422-cb2d-4b4e-8398-1d01dad26955">
+    
+    <div class="input-group">
+        <input type="text" name="name" placeholder="Identity / Name" required>
+    </div>
+    <div class="input-group">
+        <input type="email" name="email" placeholder="Secure Node / Email" required>
+    </div>
+    <div class="input-group">
+        <textarea name="message" placeholder="Encrypted Message..." rows="5" required></textarea>
+    </div>
+    <button type="submit" id="submit-btn">Transmit Transmission</button>
+    
+    <div id="form-status" style="margin-top: 1rem; font-family: var(--font-head); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;"></div>
+</form>
                 <div class="direct-contact">
                     <a href="mailto:mr4316841@gmail.com" class="contact-link">
                         <span>Direct Terminal</span>
