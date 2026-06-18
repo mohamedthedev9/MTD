@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     words.forEach((word, index) => {
         setTimeout(() => {
             word.classList.add('visible');
-        }, 150 * index); // Staggered delay for cinematic reading flow
+        }, 150 * index);
     });
 
-    /* --- 2. SCROLL REVEAL LOGIC (INTERSECTION OBSERVER) --- */
+    /* --- 2. SCROLL REVEAL LOGIC --- */
     const scrollSections = document.querySelectorAll('#contact, #partners');
     
     const revealOptions = {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Animates only once
+                observer.unobserve(entry.target);
             }
         });
     }, revealOptions);
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionObserver.observe(section);
     });
 
-    /* --- 3. PYTHON PORTAL & HACKER TEXT DECRYPTION LOGIC --- */
+    /* --- 3. PYTHON PORTAL & DECRYPTION LOGIC --- */
     const pythonBtn = document.getElementById('open-python-btn');
     const pythonPortal = document.getElementById('python-portal');
     const closePortalBtn = document.getElementById('close-portal');
@@ -39,27 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-{}[]|";
     let decodeInterval;
 
-    // Trigger Terminal Boot Sequence on Portal Click
     pythonBtn.addEventListener('click', () => {
         pythonPortal.classList.add('is-open');
-        document.body.style.overflow = 'hidden'; // Stop background scrolling
+        document.body.style.overflow = 'hidden';
         
-        // Reset element states
         statusText.innerText = "";
         let iterations = 0;
         clearInterval(decodeInterval);
 
-        // Run the glitch decryption after portal background transitions in
         setTimeout(() => {
             decodeInterval = setInterval(() => {
                 statusText.innerText = finalMessage.split("")
                     .map((char, index) => {
-                        if (char === " ") return " "; // Retain spacing structure
-                        
+                        if (char === " ") return " ";
                         if (index < iterations) {
-                            return finalMessage[index]; // Display authenticated characters
+                            return finalMessage[index];
                         }
-                        // Render glitch patterns on non-decrypted positions
                         return characters[Math.floor(Math.random() * characters.length)];
                     })
                     .join("");
@@ -67,16 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (iterations >= finalMessage.length) {
                     clearInterval(decodeInterval);
                 }
-                
-                iterations += 1 / 3; // Controls letter-by-letter translation speed
+                iterations += 1 / 3;
             }, 30); 
         }, 400);
     });
 
-    // Terminate Overlay Operations
     closePortalBtn.addEventListener('click', () => {
         pythonPortal.classList.remove('is-open');
-        document.body.style.overflow = 'auto'; // Re-enable background scrolling
+        document.body.style.overflow = 'auto';
         clearInterval(decodeInterval);
         statusText.innerText = ""; 
     });
