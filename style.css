@@ -388,3 +388,53 @@ form button:hover {
     .time-block { width: 80px; }
     .separator { font-size: 2.5rem; margin-top: -1rem; }
 }
+/* --- 5. PERSISTENT LIVE COUNTDOWN --- */
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const statusText = document.querySelector('.status-text');
+
+    if (hoursEl && minutesEl && secondsEl) {
+        // 1. Check browser storage for an existing end time
+        let endTime = localStorage.getItem('mtd_countdown_end');
+
+        // 2. If no time is saved (first visit), calculate 48 hours from exactly NOW
+        if (!endTime) {
+            const now = new Date().getTime();
+            endTime = now + (48 * 60 * 60 * 1000); // 48 hours in milliseconds
+            localStorage.setItem('mtd_countdown_end', endTime);
+        }
+
+        // 3. Calculation engine
+        function updateCountdown() {
+            const currentTime = new Date().getTime();
+            const timeRemaining = endTime - currentTime;
+
+            // When the countdown hits zero
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                hoursEl.innerText = "00";
+                minutesEl.innerText = "00";
+                secondsEl.innerText = "00";
+                if (statusText) {
+                    statusText.innerText = "SYSTEM INITIATED // ACCESS GRANTED";
+                    statusText.style.color = "#00ff00"; // Hacker Green
+                }
+                return;
+            }
+
+            // Math for remaining time
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 100)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // Force double-digits (e.g., "09" instead of "9")
+            hoursEl.innerText = hours.toString().padStart(2, '0');
+            minutesEl.innerText = minutes.toString().padStart(2, '0');
+            secondsEl.innerText = seconds.toString().padStart(2, '0');
+        }
+
+        // Run immediately, then loop every 1 second
+        updateCountdown();
+        const timerInterval = setInterval(updateCountdown, 1000);
+    }
